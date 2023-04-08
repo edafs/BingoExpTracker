@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Text.Json;
 using BingoExpTracker.Models;
 
@@ -6,8 +7,13 @@ namespace BingoExpTracker.Service
 {
 	public class ExpService
 	{
+
+		public readonly List<UserHiscore> _startUsersExp;
+		public List<UserHiscore> _AllHiscores;
+
 		public ExpService()
 		{
+			this._startUsersExp = LoadStartExp();
 		}
 
 		/// <summary>
@@ -35,6 +41,26 @@ namespace BingoExpTracker.Service
 			}
 
 			return userScores;
+		}
+
+		public async Task CumilativeExpTracker()
+		{
+			List<UserHiscore> userHiscores = new List<UserHiscore>();
+
+			List<string> allUsers = _startUsersExp
+				.Select(users => users.User)
+				.ToList();
+
+			foreach (string rsn in allUsers)
+			{
+				ScoreScrapper scrapper = new ScoreScrapper();
+				UserHiscore hiscore = await scrapper.GetScore(rsn);
+
+				if (hiscore != null)
+				{
+                    _AllHiscores.Add(hiscore);
+				}
+			}
 		}
 	}
 }
