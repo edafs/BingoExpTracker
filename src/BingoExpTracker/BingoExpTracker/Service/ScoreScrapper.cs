@@ -23,16 +23,15 @@ namespace BingoExpTracker.Service
 				string uri = HighScoreUri(rsn);
 				var response = await client.GetAsync(uri, HttpCompletionOption.ResponseHeadersRead);
 
-				response.EnsureSuccessStatusCode();
+				if (!response.IsSuccessStatusCode)
+				{
+					throw new WebException(rsn + " not found!");
+				}
 
 				using (var stream = await response.Content.ReadAsStreamAsync())
 				using (var streamReader = new StreamReader(stream))
 				{
                     string firstLine = streamReader.ReadLine();
-                    if (string.IsNullOrWhiteSpace(firstLine) || firstLine.Contains("404"))
-                    {
-                        throw new WebException(rsn + " not found!");
-                    }
 
 					score.User = rsn;
 					score.Attack = ParseForExp(streamReader.ReadLine());
@@ -58,16 +57,15 @@ namespace BingoExpTracker.Service
 					score.Runecrafting = ParseForExp(streamReader.ReadLine());
 					score.Hunter = ParseForExp(streamReader.ReadLine());
 					score.Construction = ParseForExp(streamReader.ReadLine());
-
                 }
-
-				return score;
 			}
-		}
+
+            return score;
+        }
 
 		private int ParseForExp(string stream)
 		{
-			if (string.IsNullOrWhiteSpace(stream))
+			if (!string.IsNullOrWhiteSpace(stream))
 			{
 				string[] line = stream.Split(",");
 				int.TryParse(line[2], out int exp);
@@ -85,4 +83,3 @@ namespace BingoExpTracker.Service
                 , rsn);
     }
 }
-
