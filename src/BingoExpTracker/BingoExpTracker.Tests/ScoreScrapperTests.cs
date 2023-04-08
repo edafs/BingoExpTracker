@@ -17,6 +17,16 @@ public class ScoreScrapperTests
     }
 
     [Fact]
+    public async Task CanParse_Spaces()
+    {
+        ScoreScrapper scrapper = new ScoreScrapper();
+        UserHiscore score = await scrapper.GetScore("Disco Hunlef");
+
+        Assert.Equal("Disco Hunlef", score.User);
+        Assert.True(score.Attack > 13000000, "Wrong att");
+    }
+
+    [Fact]
     public async Task CanParse_E2E()
     {
         ScoreScrapper scrapper = new ScoreScrapper();
