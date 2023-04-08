@@ -5,6 +5,8 @@ VisualStudioVersion = 25.0.1706.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BingoExpTracker", "BingoExpTracker\BingoExpTracker.csproj", "{41B9566F-48F1-43A0-8B6C-1A6E6D1EC3FE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BingoExpTracker.Tests", "BingoExpTracker.Tests\BingoExpTracker.Tests.csproj", "{4372BD7E-FEB9-4B76-A9CF-D41FCCD2AA4D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{41B9566F-48F1-43A0-8B6C-1A6E6D1EC3FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{41B9566F-48F1-43A0-8B6C-1A6E6D1EC3FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{41B9566F-48F1-43A0-8B6C-1A6E6D1EC3FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4372BD7E-FEB9-4B76-A9CF-D41FCCD2AA4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4372BD7E-FEB9-4B76-A9CF-D41FCCD2AA4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4372BD7E-FEB9-4B76-A9CF-D41FCCD2AA4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4372BD7E-FEB9-4B76-A9CF-D41FCCD2AA4D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
